@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.ShooterConstants;
 import frc.robot.auto.*;
 import frc.robot.auto.plans.AutoAllianceZonePlan;
 import frc.robot.auto.plans.AutoForwardPlan;
@@ -22,9 +23,6 @@ import frc.robot.auto.plans.AutoShootPlan;
 import frc.robot.commands.TeleopCmd;
 import frc.robot.commands.feeder.*;
 import frc.robot.commands.intake.*;
-import frc.robot.commands.intake.IntakeWheelForwardCommand;
-import frc.robot.commands.intake.IntakeWheelReverseCommand;
-import frc.robot.commands.intake.IntakeWheelStopCommand;
 import frc.robot.subsystems.*;
 import frc.utils.ControllerUtils;
 import org.littletonrobotics.urcl.URCL;
@@ -154,7 +152,7 @@ public class RobotContainer {
 
     cutil
         .supplier(Controllers.xbox_y, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> shooter.shooterConstantShootCmd()))
+        .onTrue(new InstantCommand(() -> shooter.shooterConstantShootCmd(ShooterConstants.kShooterConstantSpeed)))
         .onFalse(new InstantCommand(() -> shooter.shooterStopCmd()));
 
     // Intake Lift Bindings

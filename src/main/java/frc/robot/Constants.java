@@ -171,11 +171,12 @@ public final class Constants {
     public static final int kRearLeftDrivingCanId = 9;
     public static final int kRearLeftTurningCanId = 8;
 
-    public static final int kIntakeLiftCanId = 15;
-    public static final int kIntakeWheelCanId = 16;
-    public static final int kShooterMainCanId = 17;
-    public static final int kFeederWheelCanId = 19;
-    public static final int kFeederSpinCanId = 20;
+    public static final int kIntakeLiftCanId = 12;
+    public static final int kIntakeWheelCanId = 13;
+    public static final int kShooterRightCanId = 14;
+    public static final int kShooterLeftCanId = 15;
+    public static final int kFeederWheelCanId = 17;
+    public static final int kFeederConveyorCanId = 16;
     public static final int kClimberCanId = 21;
 
     // Used to declare Navx as upside down
@@ -193,7 +194,7 @@ public final class Constants {
     public static final double kIntakeLiftUpDuration = 2;
     public static final double kIntakeWheelSpeed = -0.6;
     public static final double kFeederWheelSpeed = 0.3;
-    public static final double kFeederSpinSpeed = 0.3;
+    public static final double kFeederConveyorSpeed = 0.3;
     public static final double kClimberSpeed = 0.3;
   }
 

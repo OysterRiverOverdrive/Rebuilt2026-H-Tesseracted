@@ -6,6 +6,7 @@ package frc.robot.auto;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.ShooterConstants;
 import frc.robot.subsystems.ShooterSubsystem;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
@@ -27,7 +28,7 @@ public class AutoFixedShootCmd extends Command {
   public void initialize() {
     timer.reset();
     timer.start();
-    shooter.shooterSpecializedConstantShootCmd();
+    shooter.shooterConstantShootCmd(ShooterConstants.kShooterSpecializedConstantSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
