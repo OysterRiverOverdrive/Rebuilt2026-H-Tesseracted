@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
@@ -15,13 +16,14 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.RobotConstants;
 
 public class IntakeSubsystem extends SubsystemBase {
-  private boolean isUp = true;
 
   private SparkMax intakeWheel =
       new SparkMax(RobotConstants.kIntakeWheelCanId, MotorType.kBrushless);
   private SparkMax intakeLift = new SparkMax(RobotConstants.kIntakeLiftCanId, MotorType.kBrushless);
 
   private SparkMaxConfig liftConfig = new SparkMaxConfig();
+
+  private AbsoluteEncoder liftEncoder = intakeLift.getAbsoluteEncoder();
 
   /** Creates a new IntakeWheelSubsystem. */
   public IntakeSubsystem() {
@@ -44,30 +46,36 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void intakeDownCmd() {
-    if (isUp) {
+    if (!isOut()) {
       intakeLift.set(RobotConstants.kIntakeLiftDownSpeed);
-      isUp = false;
     }
   }
 
-  // public void intakeUpCmd() {
-  //   if(!isUp) {
-  //     intakeLift.set(RobotConstants.kIntakeLiftUpSpeed);
-  //     isUp = true;
-  //   }
-  // }
+  public void intakeUpCmd() {
+    if(!isIn()) {
+      intakeLift.set(RobotConstants.kIntakeLiftUpSpeed);
+    }
+  }
+
+  public double getLiftEncoder() {
+    return liftEncoder.getPosition();
+  }
 
   public void intakeLiftStopCmd() {
     intakeLift.stopMotor();
   }
 
-  public boolean isUp() {
-    return isUp;
+  public boolean isIn() {
+    return getLiftEncoder() >= RobotConstants.kIntakeLiftInPosition;
+  }
+
+  public boolean isOut() {
+    return getLiftEncoder() <= RobotConstants.kIntakeLiftOutPosition;
   }
 
   @Override
   public void periodic() {
-    SmartDashboard.putBoolean("Intake Is Up", isUp);
+    SmartDashboard.putBoolean("Intake Is Out", isOut());
     // This method will be called once per scheduler run
   }
 }

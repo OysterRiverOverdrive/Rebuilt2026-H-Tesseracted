@@ -152,17 +152,21 @@ public class RobotContainer {
 
     cutil
         .supplier(Controllers.xbox_y, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> shooter.shooterConstantShootCmd(ShooterConstants.kShooterConstantSpeed)))
+        .onTrue(
+            new InstantCommand(
+                () -> shooter.shooterConstantShootCmd(ShooterConstants.kShooterConstantSpeed)))
         .onFalse(new InstantCommand(() -> shooter.shooterStopCmd()));
 
     // Intake Lift Bindings
     cutil
-        .supplier(Controllers.xbox_x, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new IntakeDownCommand(intake));
+        .POVsupplier(0, DriveConstants.joysticks.OPERATOR)
+        .onTrue(new IntakeUpCommand(intake))
+        .onFalse(new IntakeLiftStopCommand(intake));
 
-    // cutil
-    //     .supplier(Controllers.xbox_y, DriveConstants.joysticks.OPERATOR)
-    //     .onTrue(new IntakeUpCommand(intake));
+    cutil
+        .POVsupplier(180, DriveConstants.joysticks.OPERATOR)
+        .onTrue(new IntakeDownCommand(intake))
+        .onFalse(new IntakeLiftStopCommand(intake));
   }
 
   public Command getAutonomousCommand() {

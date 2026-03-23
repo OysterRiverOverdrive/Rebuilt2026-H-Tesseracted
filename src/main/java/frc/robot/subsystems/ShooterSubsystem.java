@@ -59,8 +59,6 @@ public class ShooterSubsystem extends SubsystemBase {
         shooterLeftConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     shooterPID = shooterLeft.getClosedLoopController();
-
-    SmartDashboard.putNumber("Used Shoot", 8000);
   }
 
   public void shooterDislodgeCmd() {
@@ -106,7 +104,7 @@ public class ShooterSubsystem extends SubsystemBase {
         speed = ShooterConstants.getShooterSpeed(ShooterConstants.kShooterMaxDistance);
       }
     } else {
-      speed = SmartDashboard.getNumber("Used Shoot", 8000);
+      speed = constantShootValue;
     }
 
     if (activePID) {

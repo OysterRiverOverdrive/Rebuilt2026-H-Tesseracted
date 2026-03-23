@@ -9,11 +9,11 @@ import frc.robot.subsystems.IntakeSubsystem;
 
 /* You should consider using the more terse Command factories API instead
 https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class IntakeUpCommand extends Command {
+public class IntakeLiftStopCommand extends Command {
   private final IntakeSubsystem intake;
 
   /** Creates a new intakeDownCommand. */
-  public IntakeUpCommand(IntakeSubsystem intake) {
+  public IntakeLiftStopCommand(IntakeSubsystem intake) {
     this.intake = intake;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(intake);
@@ -27,7 +27,7 @@ public class IntakeUpCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.intakeUpCmd();
+    intake.intakeLiftStopCmd();
   }
 
   // Called once the command ends or is interrupted.
