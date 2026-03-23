@@ -190,14 +190,13 @@ public final class Constants {
 
     public static final double kIntakeLiftDownSpeed = -0.1;
     public static final double kIntakeLiftUpSpeed = 0.1;
-    public static final double kIntakeLiftOutPosition = 0.27; //measured 0.265
-    public static final double kIntakeLiftInPosition = 0.53; //measured 0.537
-    
+    public static final double kIntakeLiftOutPosition = 0.27; // measured 0.265
+    public static final double kIntakeLiftInPosition = 0.53; // measured 0.537
+
     public static final double kIntakeWheelSpeed = -1;
     public static final double kFeederWheelSpeed = -0.4;
     public static final double kFeederConveyorSpeed = -0.7;
     public static final double kClimberSpeed = 0.3;
-
   }
 
   public static final class ShooterConstants {

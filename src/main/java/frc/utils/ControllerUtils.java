@@ -75,8 +75,8 @@ public class ControllerUtils {
   /**
    * Sub-method of acquiring boolean of controller D-Pad buttons
    *
-   * @param angle degree on the D-Pad to be checked (Pulled from FRC Driver Station).
-   * 0 is up, continues clockwise (90 is right, etc)
+   * @param angle degree on the D-Pad to be checked (Pulled from FRC Driver Station). 0 is up,
+   *     continues clockwise (90 is right, etc)
    * @param joystick Controller of which the button is located, use Enum in constants
    */
   public Trigger POVsupplier(int angle, DriveConstants.joysticks joystick) {

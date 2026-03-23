@@ -52,7 +52,7 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void intakeUpCmd() {
-    if(!isIn()) {
+    if (!isIn()) {
       intakeLift.set(RobotConstants.kIntakeLiftUpSpeed);
     }
   }

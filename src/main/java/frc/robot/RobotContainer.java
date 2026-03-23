@@ -158,13 +158,11 @@ public class RobotContainer {
         .onFalse(new InstantCommand(() -> shooter.shooterStopCmd()));
 
     // Intake Lift Bindings
-    cutil
-        .POVsupplier(0, DriveConstants.joysticks.OPERATOR)
+    cutil.POVsupplier(0, DriveConstants.joysticks.OPERATOR)
         .onTrue(new IntakeUpCommand(intake))
         .onFalse(new IntakeLiftStopCommand(intake));
 
-    cutil
-        .POVsupplier(180, DriveConstants.joysticks.OPERATOR)
+    cutil.POVsupplier(180, DriveConstants.joysticks.OPERATOR)
         .onTrue(new IntakeDownCommand(intake))
         .onFalse(new IntakeLiftStopCommand(intake));
   }

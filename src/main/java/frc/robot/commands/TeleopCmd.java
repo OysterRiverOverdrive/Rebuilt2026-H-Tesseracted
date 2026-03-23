@@ -58,8 +58,7 @@ public class TeleopCmd extends Command {
               DrivetrainSubsystem.getAutoAimTarget().getX() - driveSub.getVisionPose().getX());
 
       // Calculate the angle difference (how much we need to rotate)
-      double angleError =
-          (angleToTarget - driveSub.getVisionPose().getRotation().getRadians());
+      double angleError = (angleToTarget - driveSub.getVisionPose().getRotation().getRadians());
 
       // Normalize the angle error to [-π, π]
       angleError = Math.atan2(Math.sin(angleError), Math.cos(angleError));
