@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import com.pathplanner.lib.auto.AutoBuilder;
 import com.playingwithfusion.TimeOfFlight;
 import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -11,7 +12,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.ShooterConstants;
 import frc.robot.auto.*;
@@ -32,15 +32,7 @@ public class RobotContainer {
   private final ControllerUtils cutil = new ControllerUtils();
 
   // Auto Dropdown - Make dropdown variable and variables to be selected
-  private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  private final String auto1 = "1";
-  private final String auto2 = "2";
-  private final String auto3 = "3";
-  private final String auto4 = "4";
-  private final String auto5 = "5";
-  private final String auto6 = "6";
-  private final String auto7 = "7";
-  Command auto;
+  private final SendableChooser<Command> autoChooser;
 
   // Subsystems
   private final VisionSubsystem vision = new VisionSubsystem();
@@ -87,15 +79,8 @@ public class RobotContainer {
     drivetrain.setDefaultCommand(teleopCmd);
 
     // Add Auto options to dropdown and push to dashboard
-    m_chooser.setDefaultOption("Do Nothing", auto1);
-    m_chooser.addOption("Go Forward", auto2);
-    m_chooser.addOption("Middle", auto3);
-    m_chooser.addOption("Alliance Side", auto4);
-    m_chooser.addOption("Shoot", auto5);
-    m_chooser.addOption("Auto[Rename Me]", auto6);
-    m_chooser.addOption("Auto[Rename Me]", auto7);
-    SmartDashboard.putData("Auto Selector", m_chooser);
-    SmartDashboard.putNumber("Auto Wait Time (Sec)", 0);
+    autoChooser = AutoBuilder.buildAutoChooser();
+    SmartDashboard.putData("Auto Selector", autoChooser);
 
     // Configure Buttons Methods
     configureBindings();
@@ -168,38 +153,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
-    // Return NOTHING, replace with command to be run in autonomous period
-    // Prior Reference:
-    // https://github.com/OysterRiverOverdrive/Charged-Up-2023-Atlas_Chainsaw/blob/main/src/main/java/frc/robot/RobotContainer.java
-
-    switch (m_chooser.getSelected()) {
-      default:
-      case auto1:
-        auto = new BeginSleepCmd(drivetrain, 0);
-        break;
-      case auto2:
-        auto = forward;
-        break;
-      case auto3:
-        auto = middleField;
-        break;
-      case auto4:
-        auto = allianceZone;
-        break;
-      case auto5:
-        auto = shoot;
-        break;
-      case auto6:
-        break;
-      case auto7:
-        break;
-    }
-    // Create sequential command with the wait command first then run selected auto
-    auto =
-        new SequentialCommandGroup(
-            new BeginSleepCmd(drivetrain, SmartDashboard.getNumber("Auto Wait Time (Sec)", 0)),
-            auto);
-    return auto;
+    return autoChooser.getSelected();
   }
 }

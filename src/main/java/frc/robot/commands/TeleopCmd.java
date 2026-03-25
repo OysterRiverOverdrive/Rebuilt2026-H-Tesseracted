@@ -42,9 +42,12 @@ public class TeleopCmd extends Command {
     double ContX =
         MathUtil.applyDeadband(
             -controller.getRawAxis(DriveConstants.kDriveX), DriveConstants.deadzoneDriver);
+    ContX = MathUtil.copyDirectionPow(ContX, 2);
+
     double ContY =
         MathUtil.applyDeadband(
             -controller.getRawAxis(DriveConstants.kDriveY), DriveConstants.deadzoneDriver);
+    ContY = MathUtil.copyDirectionPow(ContY, 2);
 
     if (!DrivetrainSubsystem.autoAimEnabled) {
       ContRotate =
