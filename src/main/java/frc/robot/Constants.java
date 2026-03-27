@@ -190,8 +190,8 @@ public final class Constants {
 
     public static final double kIntakeLiftDownSpeed = -0.1;
     public static final double kIntakeLiftUpSpeed = 0.1;
-    public static final double kIntakeLiftOutPosition = 0.27; // measured 0.265
-    public static final double kIntakeLiftInPosition = 0.53; // measured 0.537
+    public static final double kIntakeLiftOutPosition = 0.12; // measured 0.112
+    public static final double kIntakeLiftInPosition = 0.39; // measured 0.395
 
     public static final double kIntakeWheelSpeed = -1;
     public static final double kFeederWheelSpeed = -0.4;
@@ -212,7 +212,7 @@ public final class Constants {
      * @return the speed to give the shooter
      */
     public static double getShooterSpeed(double distance) {
-      return ((7.88117 * distance) + 5731.69904);
+      return ((7.88117 * distance) + 5800);
     }
 
     public static final double kShooterConstantSpeed = 10000;

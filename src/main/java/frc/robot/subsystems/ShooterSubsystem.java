@@ -56,7 +56,7 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterRightConfig.idleMode(IdleMode.kCoast).follow(shooterLeft, true);
 
     shooterRight.configure(
-        shooterLeftConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        shooterRightConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     shooterPID = shooterLeft.getClosedLoopController();
   }
