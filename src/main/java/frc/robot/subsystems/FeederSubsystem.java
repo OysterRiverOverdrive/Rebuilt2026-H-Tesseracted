@@ -24,16 +24,16 @@ public class FeederSubsystem extends SubsystemBase {
 
   public void feederForwardCmd() {
     feederWheel.set(RobotConstants.kFeederWheelSpeed);
-    if (!intake.isIn()) {
-      feederConveyor.set(RobotConstants.kFeederConveyorSpeed);
-    }
+    // if (!intake.isIn()) {
+    feederConveyor.set(RobotConstants.kFeederConveyorSpeed);
+    // }
   }
 
   public void feederReverseCmd() {
     feederWheel.set(-1 * RobotConstants.kFeederWheelSpeed);
-    if (!intake.isIn()) {
-      feederConveyor.set(-1 * RobotConstants.kFeederConveyorSpeed);
-    }
+    // if (!intake.isIn()) {
+    feederConveyor.set(-1 * RobotConstants.kFeederConveyorSpeed);
+    // }
   }
 
   public void feederStopCmd() {

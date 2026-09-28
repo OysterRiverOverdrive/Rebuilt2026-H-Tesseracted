@@ -46,15 +46,15 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void intakeDownCmd() {
-    if (!isOut()) {
-      intakeLift.set(RobotConstants.kIntakeLiftDownSpeed);
-    }
+    // if (!isOut()) {
+    intakeLift.set(RobotConstants.kIntakeLiftDownSpeed);
+    // }
   }
 
   public void intakeUpCmd() {
-    if (!isIn()) {
-      intakeLift.set(RobotConstants.kIntakeLiftUpSpeed);
-    }
+    // if (!isIn()) {
+    intakeLift.set(RobotConstants.kIntakeLiftUpSpeed);
+    // }
   }
 
   public double getLiftEncoder() {
