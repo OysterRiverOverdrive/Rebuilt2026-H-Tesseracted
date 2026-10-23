@@ -21,6 +21,8 @@ import frc.robot.auto.plans.AutoMiddleFieldPlan;
 import frc.robot.auto.plans.AutoShootPlan;
 // import frc.robot.auto.plans.*;
 import frc.robot.commands.TeleopCmd;
+import frc.robot.commands.agitator.AgitatorRunCommand;
+import frc.robot.commands.agitator.AgitatorStopCommand;
 import frc.robot.commands.feeder.*;
 import frc.robot.commands.intake.*;
 import frc.robot.subsystems.*;
@@ -48,6 +50,7 @@ public class RobotContainer {
   private final IntakeSubsystem intake = new IntakeSubsystem();
   private final FeederSubsystem feeder = new FeederSubsystem(intake);
   private final ShooterSubsystem shooter = new ShooterSubsystem(drivetrain);
+  private final AgitatorSubsystem agitator = new AgitatorSubsystem(intake);
 
   // Commands
   private final TeleopCmd teleopCmd =
@@ -128,6 +131,12 @@ public class RobotContainer {
         .onTrue(new FeederReverseCommand(feeder))
         .onFalse(new FeederStopCommand(feeder));
 
+    // Feeder Agitator
+    cutil
+        .supplier(Controllers.xbox_x, DriveConstants.joysticks.OPERATOR)
+        .onTrue(new AgitatorRunCommand(agitator))
+        .onFalse(new AgitatorStopCommand(agitator));
+
     // Intake Wheel Bindings
     cutil
         .triggerSupplier(Controllers.xbox_lt, 0.2, DriveConstants.joysticks.OPERATOR)
@@ -156,6 +165,13 @@ public class RobotContainer {
             new InstantCommand(
                 () -> shooter.shooterConstantShootCmd(ShooterConstants.kShooterConstantSpeed)))
         .onFalse(new InstantCommand(() -> shooter.shooterStopCmd()));
+
+    cutil
+      .supplier(Controllers.xbox_options, DriveConstants.joysticks.OPERATOR)
+      .onTrue(
+          new InstantCommand(
+            () -> shooter.shooterConstantShootCmd(16000)))
+      .onFalse(new InstantCommand(() -> shooter.shooterStopCmd()));
 
     // Intake Lift Bindings
     cutil.POVsupplier(0, DriveConstants.joysticks.OPERATOR)

@@ -176,7 +176,7 @@ public final class Constants {
     public static final int kShooterRightCanId = 14;
     public static final int kShooterLeftCanId = 15;
     public static final int kFeederWheelCanId = 17;
-    public static final int kFeederConveyorCanId = 16;
+    public static final int kFeederAgitatorCanId = 16;
     public static final int kClimberCanId = 21;
 
     // Used to declare Navx as upside down
@@ -195,7 +195,7 @@ public final class Constants {
 
     public static final double kIntakeWheelSpeed = -1;
     public static final double kFeederWheelSpeed = -0.4;
-    public static final double kFeederConveyorSpeed = -0.7;
+    public static final double kFeederAgitatorSpeed = -0.3; // was -0.7
     public static final double kClimberSpeed = 0.3;
   }
 
@@ -215,7 +215,7 @@ public final class Constants {
       return ((7.88117 * distance) + 5731.69904);
     }
 
-    public static final double kShooterConstantSpeed = 10000;
+    public static final double kShooterConstantSpeed = 5000;
 
     public static final double kShooterSpecializedConstantSpeed = getShooterSpeed(2.5);
 

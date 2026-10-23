@@ -28,6 +28,7 @@ public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new IntakeWheelSubsystem. */
   public IntakeSubsystem() {
     liftConfig.idleMode(IdleMode.kBrake);
+    liftConfig.inverted(true);
 
     intakeLift.configure(
         liftConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -46,15 +47,15 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void intakeDownCmd() {
-    if (!isOut()) {
-      intakeLift.set(RobotConstants.kIntakeLiftDownSpeed);
-    }
+    // if (!isOut()) {
+    intakeLift.set(RobotConstants.kIntakeLiftDownSpeed);
+    // }
   }
 
   public void intakeUpCmd() {
-    if (!isIn()) {
-      intakeLift.set(RobotConstants.kIntakeLiftUpSpeed);
-    }
+    // if (!isIn()) {
+    intakeLift.set(RobotConstants.kIntakeLiftUpSpeed);
+    // }
   }
 
   public double getLiftEncoder() {

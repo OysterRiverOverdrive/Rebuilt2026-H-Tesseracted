@@ -14,8 +14,6 @@ public class FeederSubsystem extends SubsystemBase {
 
   private SparkMax feederWheel =
       new SparkMax(RobotConstants.kFeederWheelCanId, MotorType.kBrushless);
-  private SparkMax feederConveyor =
-      new SparkMax(RobotConstants.kFeederConveyorCanId, MotorType.kBrushless);
 
   /** Creates a new FeederSubsystem. */
   public FeederSubsystem(IntakeSubsystem intake) {
@@ -24,21 +22,14 @@ public class FeederSubsystem extends SubsystemBase {
 
   public void feederForwardCmd() {
     feederWheel.set(RobotConstants.kFeederWheelSpeed);
-    if (!intake.isIn()) {
-      feederConveyor.set(RobotConstants.kFeederConveyorSpeed);
-    }
   }
 
   public void feederReverseCmd() {
     feederWheel.set(-1 * RobotConstants.kFeederWheelSpeed);
-    if (!intake.isIn()) {
-      feederConveyor.set(-1 * RobotConstants.kFeederConveyorSpeed);
-    }
   }
 
   public void feederStopCmd() {
     feederWheel.stopMotor();
-    feederConveyor.stopMotor();
   }
 
   @Override

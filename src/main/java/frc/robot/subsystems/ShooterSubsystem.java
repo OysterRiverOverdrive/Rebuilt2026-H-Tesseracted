@@ -73,7 +73,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void shooterConstantShootCmd(double shootValue) {
     activePID = true;
     constantShoot = true;
-    constantShootValue = ShooterConstants.kShooterConstantSpeed;
+    constantShootValue = shootValue;
   }
 
   public void shooterStopCmd() {
